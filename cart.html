@@ -13,12 +13,7 @@
     margin:auto;
     padding:20px;
 }
-
-h1{
-    text-align:center;
-    margin-bottom:20px;
-}
-
+h1{text-align:center;margin-bottom:20px;}
 .cart-item{
     display:flex;
     justify-content:space-between;
@@ -29,31 +24,20 @@ h1{
     border-radius:10px;
     box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
-
-.product-name{
-    font-size:18px;
-    font-weight:bold;
-}
-
-.product-price{
-    color:green;
-    font-weight:bold;
-}
-
+.product-name{font-size:18px;font-weight:bold;}
+.product-price{color:green;font-weight:bold;}
 .remove-btn{
     border:none;
     padding:8px 12px;
     border-radius:6px;
     cursor:pointer;
 }
-
 .total-box{
     margin-top:25px;
     text-align:right;
     font-size:22px;
     font-weight:bold;
 }
-
 .checkout-btn{
     margin-top:15px;
     padding:12px 20px;
@@ -63,38 +47,16 @@ h1{
     font-size:16px;
 }
 </style>
-
 </head>
 <body>
 
 <div class="container">
+<h1>ðŸ›’ Shopping Cart</h1>
 
-<h1>🛒 Shopping Cart</h1>
+<div id="cartItems"></div>
 
-<div id="cartItems">
-
-<div class="cart-item">
-<div>
-<div class="product-name">Classic T-Shirt</div>
-<div class="product-price">₹499</div>
-</div>
-
-<button class="remove-btn">Remove</button>
-</div>
-
-<div class="cart-item">
-<div>
-<div class="product-name">Running Shoes</div>
-<div class="product-price">₹1999</div>
-</div>
-
-<button class="remove-btn">Remove</button>
-</div>
-
-</div>
-
-<div class="total-box">
-Total: ₹2498
+<div class="total-box" id="totalBox">
+Total: â‚¹0
 </div>
 
 <div style="text-align:right;">
@@ -102,8 +64,46 @@ Total: ₹2498
 Proceed To Checkout
 </button>
 </div>
-
 </div>
 
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cartItems = document.getElementById("cartItems");
+let total = 0;
+
+function renderCart(){
+cartItems.innerHTML = "";
+total = 0;
+
+cart.forEach((item,index)=>{
+total += item.price;
+
+cartItems.innerHTML += `
+<div class="cart-item">
+<div>
+<div class="product-name">${item.name}</div>
+<div class="product-price">â‚¹${item.price}</div>
+</div>
+
+<button class="remove-btn" onclick="removeItem(${index})">
+Remove
+</button>
+</div>
+`;
+});
+
+document.getElementById("totalBox").innerHTML =
+"Total: â‚¹" + total;
+}
+
+function removeItem(index){
+cart.splice(index,1);
+localStorage.setItem("cart", JSON.stringify(cart));
+renderCart();
+}
+
+renderCart();
+</script>
+
 </body>
-  </html>
+</html>
