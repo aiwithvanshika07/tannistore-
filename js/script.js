@@ -3,51 +3,79 @@
 let cartCount = 0;
 let wishlistCount = 0;
 
-// Cart Counter
+// Counter Elements
 
 const cartElement = document.getElementById("cart-count");
-
 const wishlistElement = document.getElementById("wishlist-count");
 
-if(localStorage.getItem("cartCount")){
+// Load Saved Data
+
+if (localStorage.getItem("cartCount")) {
     cartCount = parseInt(localStorage.getItem("cartCount"));
 }
 
-if(localStorage.getItem("wishlistCount")){
+if (localStorage.getItem("wishlistCount")) {
     wishlistCount = parseInt(localStorage.getItem("wishlistCount"));
 }
 
-if(cartElement){
+// Update Counters
+
+if (cartElement) {
     cartElement.textContent = cartCount;
 }
 
-if(wishlistElement){
+if (wishlistElement) {
     wishlistElement.textContent = wishlistCount;
 }
 
 // Add To Cart Buttons
 
-const cartButtons =
-document.querySelectorAll(".product-card button");
+const cartButtons = document.querySelectorAll(".add-cart");
 
 cartButtons.forEach(button => {
 
-button.addEventListener("click", () => {
+    button.addEventListener("click", () => {
 
-cartCount++;
+        cartCount++;
 
-localStorage.setItem(
-"cartCount",
-cartCount
-);
+        localStorage.setItem(
+            "cartCount",
+            cartCount
+        );
 
-if(cartElement){
-cartElement.textContent = cartCount;
-}
+        if (cartElement) {
+            cartElement.textContent = cartCount;
+        }
 
-alert("Product added to cart 🛒");
+        alert("Product added to cart 🛒");
+
+    });
 
 });
+
+// Add To Wishlist Buttons
+
+const wishlistButtons =
+document.querySelectorAll(".add-wishlist");
+
+wishlistButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        wishlistCount++;
+
+        localStorage.setItem(
+            "wishlistCount",
+            wishlistCount
+        );
+
+        if (wishlistElement) {
+            wishlistElement.textContent = wishlistCount;
+        }
+
+        alert("Product added to wishlist ❤️");
+
+    });
 
 });
 
@@ -59,30 +87,30 @@ document.querySelector(".search-box input");
 const productCards =
 document.querySelectorAll(".product-card");
 
-if(searchInput){
+if (searchInput) {
 
-searchInput.addEventListener("keyup", () => {
+    searchInput.addEventListener("keyup", () => {
 
-let value =
-searchInput.value.toLowerCase();
+        let value =
+        searchInput.value.toLowerCase();
 
-productCards.forEach(card => {
+        productCards.forEach(card => {
 
-let title =
-card.querySelector("h3")
-.textContent
-.toLowerCase();
+            let title =
+            card.querySelector("h3")
+            .textContent
+            .toLowerCase();
 
-if(title.includes(value)){
-card.style.display = "block";
-}
-else{
-card.style.display = "none";
-}
+            if (title.includes(value)) {
+                card.style.display = "block";
+            }
+            else {
+                card.style.display = "none";
+            }
 
-});
+        });
 
-});
+    });
 
 }
 
@@ -91,53 +119,51 @@ card.style.display = "none";
 const subscribeBtn =
 document.querySelector(".newsletter button");
 
-if(subscribeBtn){
+if (subscribeBtn) {
 
-subscribeBtn.addEventListener("click", () => {
+    subscribeBtn.addEventListener("click", () => {
 
-let email =
-document.querySelector(".newsletter input").value;
+        let email =
+        document.querySelector(".newsletter input").value;
 
-if(email === ""){
-alert("Please enter email");
+        if (email === "") {
+            alert("Please enter email");
+        }
+        else {
+            alert("Thanks for subscribing 🎉");
+        }
+
+    });
+
 }
-else{
-alert("Thanks for subscribing 🎉");
-}
 
-});
-
-}
-
-// Future Dark Mode Support
+// Dark Mode Support
 
 let darkMode = false;
 
-function toggleDarkMode(){
+function toggleDarkMode() {
 
-if(!darkMode){
+    if (!darkMode) {
 
-document.body.style.background =
-"#121212";
+        document.body.style.background =
+        "#121212";
 
-document.body.style.color =
-"white";
+        document.body.style.color =
+        "white";
 
-darkMode = true;
+        darkMode = true;
 
-}
-else{
+    }
+    else {
 
-document.body.style.background =
-"#f5f5f5";
+        document.body.style.background =
+        "#f5f5f5";
 
-document.body.style.color =
-"#333";
+        document.body.style.color =
+        "#333";
 
-darkMode = false;
+        darkMode = false;
 
-}
+    }
 
-}
-
-console.log("TanniStore Loaded Successfully 🚀");
+    }
