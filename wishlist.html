@@ -56,7 +56,45 @@ h1{
 </style>
 
 </head>
-<body>
+<h1>My Wishlist ❤️</h1>
+
+<div id="wishlist-container"></div>
+
+<script>
+
+let wishlistItems =
+JSON.parse(localStorage.getItem("wishlistItems")) || [];
+
+const container =
+document.getElementById("wishlist-container");
+
+if (wishlistItems.length === 0) {
+
+    container.innerHTML =
+    "<p>No products in wishlist.</p>";
+
+}
+else {
+
+    wishlistItems.forEach(product => {
+
+        container.innerHTML += `
+
+        <div class="wishlist-item">
+
+            <h3>${product.name}</h3>
+
+            <p>${product.price}</p>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+</script><body>
 
 <div class="container">
 
