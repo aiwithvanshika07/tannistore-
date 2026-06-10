@@ -8,7 +8,15 @@ let wishlistCount = 0;
 const cartElement = document.getElementById("cart-count");
 const wishlistElement = document.getElementById("wishlist-count");
 
-// Load Saved Data
+// Product Arrays
+
+let cartItems =
+JSON.parse(localStorage.getItem("cartItems")) || [];
+
+let wishlistItems =
+JSON.parse(localStorage.getItem("wishlistItems")) || [];
+
+// Load Saved Counts
 
 if (localStorage.getItem("cartCount")) {
     cartCount = parseInt(localStorage.getItem("cartCount"));
@@ -28,13 +36,34 @@ if (wishlistElement) {
     wishlistElement.textContent = wishlistCount;
 }
 
-// Add To Cart Buttons
+// Add To Cart
 
-const cartButtons = document.querySelectorAll(".add-cart");
+const cartButtons =
+document.querySelectorAll(".add-cart");
 
 cartButtons.forEach(button => {
 
     button.addEventListener("click", () => {
+
+        const card =
+        button.closest(".product-card");
+
+        const product = {
+            name:
+            card.querySelector("h3").textContent,
+
+            price:
+            card.querySelector(".price")
+            ? card.querySelector(".price").textContent
+            : "Price Not Available"
+        };
+
+        cartItems.push(product);
+
+        localStorage.setItem(
+            "cartItems",
+            JSON.stringify(cartItems)
+        );
 
         cartCount++;
 
@@ -53,7 +82,7 @@ cartButtons.forEach(button => {
 
 });
 
-// Add To Wishlist Buttons
+// Add To Wishlist
 
 const wishlistButtons =
 document.querySelectorAll(".add-wishlist");
@@ -61,6 +90,26 @@ document.querySelectorAll(".add-wishlist");
 wishlistButtons.forEach(button => {
 
     button.addEventListener("click", () => {
+
+        const card =
+        button.closest(".product-card");
+
+        const product = {
+            name:
+            card.querySelector("h3").textContent,
+
+            price:
+            card.querySelector(".price")
+            ? card.querySelector(".price").textContent
+            : "Price Not Available"
+        };
+
+        wishlistItems.push(product);
+
+        localStorage.setItem(
+            "wishlistItems",
+            JSON.stringify(wishlistItems)
+        );
 
         wishlistCount++;
 
@@ -137,7 +186,7 @@ if (subscribeBtn) {
 
 }
 
-// Dark Mode Support
+// Dark Mode
 
 let darkMode = false;
 
@@ -166,4 +215,4 @@ function toggleDarkMode() {
 
     }
 
-    }
+}
