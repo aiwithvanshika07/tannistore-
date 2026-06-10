@@ -14,29 +14,89 @@
     padding:20px;
 }
 .page-title{text-align:center;margin-bottom:20px;}
-.search-box{width:100%;padding:12px;margin-bottom:20px;border:1px solid #ddd;border-radius:8px;}
-.filter-buttons{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:25px;}
-.filter-buttons button{padding:10px 15px;border:none;border-radius:8px;cursor:pointer;}
-.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
-.product-card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1);transition:0.3s;}
-.product-card:hover{transform:translateY(-5px);}
-.product-card img{width:100%;height:250px;object-fit:cover;}
-.product-info{padding:15px;}
-.price{color:green;font-weight:bold;}
-.rating{color:orange;}
-.btn-group{display:flex;gap:10px;margin-top:10px;}
-.btn{flex:1;padding:10px;border:none;border-radius:8px;cursor:pointer;}
-.cart-btn{background:#007bff;color:white;}
-.wishlist-btn{background:#ff4081;color:white;}
+.search-box{
+    width:100%;
+    padding:12px;
+    margin-bottom:20px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+.filter-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:25px;
+}
+.filter-buttons button{
+    padding:10px 15px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+.products-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+.product-card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+.product-card:hover{
+    transform:translateY(-5px);
+}
+.product-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+.product-info{
+    padding:15px;
+}
+.price{
+    color:green;
+    font-weight:bold;
+}
+.rating{
+    color:orange;
+}
+.btn-group{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+}
+.btn{
+    flex:1;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+.cart-btn{
+    background:#007bff;
+    color:white;
+}
+.wishlist-btn{
+    background:#ff4081;
+    color:white;
+}
 </style>
 </head>
 <body>
 
 <div class="products-container">
-<h1 class="page-title">ðŸ› TanniStore Products</h1>
 
-<input type="text" id="searchInput" class="search-box"
-placeholder="Search Products..." onkeyup="searchProducts()">
+<h1 class="page-title">🛍 TanniStore Products</h1>
+
+<input type="text"
+id="searchInput"
+class="search-box"
+placeholder="Search Products..."
+onkeyup="searchProducts()">
 
 <div class="filter-buttons">
 <button onclick="filterProducts('all')">All</button>
@@ -51,11 +111,19 @@ placeholder="Search Products..." onkeyup="searchProducts()">
 <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500" alt="">
 <div class="product-info">
 <h3>Classic T-Shirt</h3>
-<p class="price">â‚¹499</p>
-<p class="rating">â­â­â­â­â˜†</p>
+<p class="price">₹499</p>
+<p class="rating">⭐⭐⭐⭐☆</p>
+
 <div class="btn-group">
-<button class="btn cart-btn" onclick="addToCart('Classic T-Shirt',499)">Add Cart</button>
-<button class="btn wishlist-btn">â¤ï¸</button>
+<button class="btn cart-btn"
+onclick="addToCart('Classic T-Shirt',499)">
+Add Cart
+</button>
+
+<button class="btn wishlist-btn"
+onclick="addToWishlist('Classic T-Shirt',499)">
+❤️
+</button>
 </div>
 </div>
 </div>
@@ -64,11 +132,19 @@ placeholder="Search Products..." onkeyup="searchProducts()">
 <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500" alt="">
 <div class="product-info">
 <h3>Smartphone</h3>
-<p class="price">â‚¹14,999</p>
-<p class="rating">â­â­â­â­â­</p>
+<p class="price">₹14,999</p>
+<p class="rating">⭐⭐⭐⭐⭐</p>
+
 <div class="btn-group">
-<button class="btn cart-btn" onclick="addToCart('Smartphone',14999)">Add Cart</button>
-<button class="btn wishlist-btn">â¤ï¸</button>
+<button class="btn cart-btn"
+onclick="addToCart('Smartphone',14999)">
+Add Cart
+</button>
+
+<button class="btn wishlist-btn"
+onclick="addToWishlist('Smartphone',14999)">
+❤️
+</button>
 </div>
 </div>
 </div>
@@ -77,11 +153,19 @@ placeholder="Search Products..." onkeyup="searchProducts()">
 <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="">
 <div class="product-info">
 <h3>Running Shoes</h3>
-<p class="price">â‚¹1,999</p>
-<p class="rating">â­â­â­â­â˜†</p>
+<p class="price">₹1,999</p>
+<p class="rating">⭐⭐⭐⭐☆</p>
+
 <div class="btn-group">
-<button class="btn cart-btn" onclick="addToCart('Running Shoes',1999)">Add Cart</button>
-<button class="btn wishlist-btn">â¤ï¸</button>
+<button class="btn cart-btn"
+onclick="addToCart('Running Shoes',1999)">
+Add Cart
+</button>
+
+<button class="btn wishlist-btn"
+onclick="addToWishlist('Running Shoes',1999)">
+❤️
+</button>
 </div>
 </div>
 </div>
@@ -90,11 +174,19 @@ placeholder="Search Products..." onkeyup="searchProducts()">
 <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500" alt="">
 <div class="product-info">
 <h3>Hoodie</h3>
-<p class="price">â‚¹899</p>
-<p class="rating">â­â­â­â­â­</p>
+<p class="price">₹899</p>
+<p class="rating">⭐⭐⭐⭐⭐</p>
+
 <div class="btn-group">
-<button class="btn cart-btn" onclick="addToCart('Hoodie',899)">Add Cart</button>
-<button class="btn wishlist-btn">â¤ï¸</button>
+<button class="btn cart-btn"
+onclick="addToCart('Hoodie',899)">
+Add Cart
+</button>
+
+<button class="btn wishlist-btn"
+onclick="addToWishlist('Hoodie',899)">
+❤️
+</button>
 </div>
 </div>
 </div>
@@ -103,33 +195,91 @@ placeholder="Search Products..." onkeyup="searchProducts()">
 </div>
 
 <script>
+
 function searchProducts(){
-let input=document.getElementById("searchInput").value.toLowerCase();
-let cards=document.querySelectorAll(".product-card");
+let input =
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+let cards =
+document.querySelectorAll(".product-card");
+
 cards.forEach(card=>{
-let text=card.innerText.toLowerCase();
-card.style.display=text.includes(input)?"block":"none";
+let text = card.innerText.toLowerCase();
+
+card.style.display =
+text.includes(input)
+? "block"
+: "none";
 });
 }
 
 function filterProducts(category){
-let cards=document.querySelectorAll(".product-card");
+
+let cards =
+document.querySelectorAll(".product-card");
+
 cards.forEach(card=>{
-if(category==="all" || card.classList.contains(category)){
+
+if(
+category==="all" ||
+card.classList.contains(category)
+){
 card.style.display="block";
-}else{
+}
+else{
 card.style.display="none";
 }
+
 });
 }
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
 
-function addToCart(name, price){
-cart.push({name:name,price:price});
-localStorage.setItem("cart", JSON.stringify(cart));
+function addToCart(name,price){
+
+cart.push({
+name:name,
+price:price
+});
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
 alert(name + " added to cart!");
 }
+
+let wishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
+
+function addToWishlist(name,price){
+
+let exists =
+wishlist.find(
+item => item.name === name
+);
+
+if(exists){
+alert("Already in Wishlist!");
+return;
+}
+
+wishlist.push({
+name:name,
+price:price
+});
+
+localStorage.setItem(
+"wishlist",
+JSON.stringify(wishlist)
+);
+
+alert(name + " added to Wishlist!");
+}
+
 </script>
 
 </body>
