@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style>
+
 .container{
     max-width:1000px;
     margin:auto;
@@ -19,7 +20,7 @@ h1{
     margin-bottom:20px;
 }
 
-.wishlist-grid{
+#wishlist-container{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
     gap:20px;
@@ -53,87 +54,52 @@ h1{
     font-size:18px;
     margin-top:40px;
 }
+
 </style>
 
 </head>
+
+<body>
+
+<div class="container">
+
 <h1>My Wishlist ❤️</h1>
 
 <div id="wishlist-container"></div>
+
+</div>
 
 <script>
 
 let wishlistItems =
 JSON.parse(localStorage.getItem("wishlistItems")) || [];
 
-const container =
-document.getElementById("wishlist-container");
-
-if (wishlistItems.length === 0) {
-
-    container.innerHTML =
-    "<p>No products in wishlist.</p>";
-
-}
-else {
-
-    wishlistItems.forEach(product => {
-
-        container.innerHTML += `
-
-        <div class="wishlist-item">
-
-            <h3>${product.name}</h3>
-
-            <p>${product.price}</p>
-
-        </div>
-
-        `;
-
-    });
-
-}
-
-</script><body>
-
-<div class="container">
-
-<h1>❤️ My Wishlist</h1>
-
-<div id="wishlistContainer" class="wishlist-grid">
-</div>
-
-</div>
-
-<script>
-
-let wishlist =
-JSON.parse(localStorage.getItem("wishlist")) || [];
-
 function displayWishlist(){
 
 let container =
-document.getElementById("wishlistContainer");
+document.getElementById("wishlist-container");
 
-if(wishlist.length===0){
+if(wishlistItems.length === 0){
 
-container.innerHTML=
+container.innerHTML =
 "<p class='empty'>Your Wishlist is Empty 💔</p>";
 
 return;
+
 }
 
-container.innerHTML="";
+container.innerHTML = "";
 
-wishlist.forEach((item,index)=>{
+wishlistItems.forEach((item,index)=>{
 
 container.innerHTML += `
+
 <div class="wishlist-card">
 
 <h3>${item.name}</h3>
 
 <p class="price">
-₹${item.price}
+${item.price}
 </p>
 
 <button
@@ -145,6 +111,7 @@ Remove
 </button>
 
 </div>
+
 `;
 
 });
@@ -153,11 +120,16 @@ Remove
 
 function removeItem(index){
 
-wishlist.splice(index,1);
+wishlistItems.splice(index,1);
 
 localStorage.setItem(
-"wishlist",
-JSON.stringify(wishlist)
+"wishlistItems",
+JSON.stringify(wishlistItems)
+);
+
+localStorage.setItem(
+"wishlistCount",
+wishlistItems.length
 );
 
 displayWishlist();
